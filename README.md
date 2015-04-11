@@ -54,6 +54,7 @@ Please enter the new LXC Container name:
 test1
  
 Do you wish to start this LXC Container: test1 ? (y/n) y
+
 ... starting screen session ...
         21110.test1     (04/11/15 06:39:37)     (Detached)
  
