@@ -104,10 +104,6 @@ ln -s /rpool/"$LXCNAME"/rootfs /lxc-container/"$LXCNAME"
 
 echo "$LXCNAME" > /lxc-container/"$LXCNAME"/etc/hostname
 
-echo ""
-echo "That's it"
-echo ""
-
 read -p "Do you wish to start this LXC Container: "$LXCNAME" ? (y/n) " LXCSTART
 if [ "$LXCSTART" = "y" ]; then
   screen -d -m -S "$LXCNAME" -- lxc-start -n "$LXCNAME"
@@ -115,9 +111,10 @@ if [ "$LXCSTART" = "y" ]; then
   sleep 2
   screen -x | grep "$LXCNAME"
   echo ""
-  echo "Have a nice day"
+  echo "That's it"
 else
-  echo "Have a nice day"
+  echo ""
+  echo "That's it"
 fi
 
 ### ### ### ### ### ### ### ### ###
