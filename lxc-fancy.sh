@@ -105,6 +105,7 @@ ln -s /rpool/"$LXCNAME"/rootfs /lxc-container/"$LXCNAME"
 
 echo "$LXCNAME" > /lxc-container/"$LXCNAME"/etc/hostname
 
+echo ""
 read -p "Do you wish to start this LXC Container: "$LXCNAME" ? (y/n) " LXCSTART
 if [ "$LXCSTART" = "y" ]; then
   screen -d -m -S "$LXCNAME" -- lxc-start -n "$LXCNAME"
