@@ -112,7 +112,7 @@ if [ "$LXCSTART" = "y" ]; then
   echo ""
   echo "... starting screen session ..."
   sleep 1
-  screen -x | grep "$LXCNAME"
+  screen -list | grep "$LXCNAME"
   echo ""
   echo "That's it"
 else
