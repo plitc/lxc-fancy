@@ -14,9 +14,9 @@ Dependencies
 ============
 * Linux (Debian)
    * ZFS on Linux
-   * zpool: "rpool"
+   * zfs parent dataset: "rpool"
    * jessie systemd-sysv lxc template
-      * zfs snapshot rpool/jessie@_0000_DEFAULT
+      * zfs snapshot "rpool/jessie@_0000_DEFAULT"
 
 Features
 ========
