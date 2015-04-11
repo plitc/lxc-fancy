@@ -17,6 +17,8 @@ Dependencies
    * zfs parent dataset: "rpool"
    * jessie systemd-sysv lxc template
       * zfs snapshot "rpool/jessie@_0000_DEFAULT"
+   * lxc
+   * screen
 
 Features
 ========

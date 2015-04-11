@@ -86,16 +86,17 @@ fi
 
 sed -i 's/jessie/'"$LXCNAME"'/g' /rpool/"$LXCNAME"/config
 
-RANDOM=$(shuf -i 10-99 -n 1)
+RANDOM1=$(shuf -i 10-99 -n 1)
+RANDOM2=$(shuf -i 10-99 -n 1)
 
-sed -i 's/aa:bb:01:01:bb:aa/aa:bb:'"$RANDOM"':'"$RANDOM"':bb:aa/' /rpool/"$LXCNAME"/config
+sed -i 's/aa:bb:01:01:bb:aa/aa:bb:'"$RANDOM1"':'"$RANDOM2"':bb:aa/' /rpool/"$LXCNAME"/config
 
 CHECKMAC1=$(grep "aa:bb" /rpool/"$LXCNAME"/config | sed 's/lxc.network.hwaddr=//')
 CHECKMAC2=$(grep -c "$CHECKMAC1" /var/lib/lxc/*/config | egrep -v ":0")
 if [ -z "$CHECKMAC2" ]; then
    : # dummy
 else
-   sed -i 's/aa:bb:01:01:bb:aa/aa:bb:'"$RANDOM"':'"$RANDOM"':bb:aa/' /rpool/"$LXCNAME"/config
+   sed -i 's/aa:bb:01:01:bb:aa/aa:bb:'"$RANDOM1"':'"$RANDOM2"':bb:aa/' /rpool/"$LXCNAME"/config
    echo "try random mac for the second time"
 fi
 
