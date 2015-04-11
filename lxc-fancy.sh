@@ -109,8 +109,9 @@ echo ""
 read -p "Do you wish to start this LXC Container: "$LXCNAME" ? (y/n) " LXCSTART
 if [ "$LXCSTART" = "y" ]; then
   screen -d -m -S "$LXCNAME" -- lxc-start -n "$LXCNAME"
+  echo ""
   echo "... starting screen session ..."
-  sleep 2
+  sleep 1
   screen -x | grep "$LXCNAME"
   echo ""
   echo "That's it"
