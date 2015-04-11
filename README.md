@@ -40,7 +40,7 @@ Usage
 ```
     # lxc-fancy       
  
-    usage: /usr/sbin/lxc-fancy { create | delete }
+    usage: lxc-fancy.sh { create | delete }
 ```
 
 Example
@@ -80,4 +80,7 @@ Screencast
 Errata
 ======
 * 11.04.2015 : 
+
+TODO
+====
 
