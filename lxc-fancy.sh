@@ -31,41 +31,65 @@
 ### ### ### PLITC // ### ### ###
 
 ### stage0 // ###
-DEBIAN=$(grep "ID" /etc/os-release | egrep -v "VERSION" | sed 's/ID=//g')
-DEBVERSION=$(grep "VERSION_ID" /etc/os-release | sed 's/VERSION_ID=//g' | sed 's/"//g')
+DEBIAN=$(grep -s "ID=" /etc/os-release | egrep -v "VERSION" | sed 's/ID=//g')
+DEBVERSION=$(grep -s "VERSION_ID" /etc/os-release | sed 's/VERSION_ID=//g' | sed 's/"//g')
+DEBTESTVERSION=$(grep -s "PRETTY_NAME" /etc/os-release | awk '{print $3}' | sed 's/"//g' | grep -c "stretch/sid")
 MYNAME=$(whoami)
 ### // stage0 ###
+
+### stage1 // ###
+#// function: run script as root
+checkrootuser()
+{
+if [ "$(id -u)" != "0" ]; then
+   echo "[ERROR] This script must be run as root" 1>&2
+   exit 1
+fi
+}
+#// function: check debian based distributions
+checkdebiandistribution()
+{
+if [ "$DEBVERSION" = "7" ]; then
+   : # dummy
+else
+   if [ "$DEBVERSION" = "8" ]; then
+      : # dummy
+   else
+      if [ "$DEBTESTVERSION" = "1" ]; then
+         : # dummy
+      else
+         if [ "$DEBIAN" = "linuxmint" ]; then
+            : # dummy
+         else
+            if [ "$DEBIAN" = "ubuntu" ]; then
+               : # dummy
+            else
+               echo "[ERROR] We currently only support: Debian 7,8,9 (testing) / Linux Mint Debian Edition (LMDE 2 Betsy) and Ubuntu Desktop 15.10+"
+               exit 1
+            fi
+         fi
+      fi
+   fi
+fi
+}
+### stage1 // ###
 
 case "$1" in
 'create')
 ### stage1 // ###
 case $DEBIAN in
 debian)
+
 ### stage2 // ###
-
 ### // stage2 ###
-#
-### stage3 // ###
-if [ "$MYNAME" = "root" ]; then
-   : # dummy
-else
-   echo "" # dummy
-   echo "" # dummy
-   echo "[Error] You must be root to run this script"
-   exit 1
-fi
-if [ "$DEBVERSION" = "8" ]; then
-   : # dummy
-else
-   echo "" # dummy
-   echo "" # dummy
-   echo "[Error] You need Debian 8 (Jessie) Version"
-   exit 1
-fi
 
-#
+### stage3 // ###
+
+checkrootuser
+checkdebiandistribution
+
 ### stage4 // ###
-#
+
 ### ### ### ### ### ### ### ### ###
 
 echo "Please enter the new LXC Container name: "
@@ -148,26 +172,12 @@ debian)
 ### // stage2 ###
 #
 ### stage3 // ###
-if [ "$MYNAME" = "root" ]; then
-   : # dummy
-else
-   echo "" # dummy
-   echo "" # dummy
-   echo "[Error] You must be root to run this script"
-   exit 1
-fi
-if [ "$DEBVERSION" = "8" ]; then
-   : # dummy
-else
-   echo "" # dummy
-   echo "" # dummy
-   echo "[Error] You need Debian 8 (Jessie) Version"
-   exit 1
-fi
 
-#
+checkrootuser
+checkdebiandistribution
+
 ### stage4 // ###
-#
+
 ### ### ### ### ### ### ### ### ###
 
 echo "Please enter the LXC Ccontainer name: "
